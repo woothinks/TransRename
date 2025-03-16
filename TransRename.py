@@ -554,6 +554,11 @@ def process_files(config):
 
 
 if __name__ == "__main__":
+    # 打包后初始化逻辑
+    if getattr(sys, 'frozen', False):
+        if not os.path.exists(CONFIG_DIR):
+            os.makedirs(CONFIG_DIR, exist_ok=True)
+    
     try:
         if not os.path.exists(CONFIG_PATH):
             print("⭐ 首次使用需要初始化配置")
